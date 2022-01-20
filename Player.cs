@@ -5,8 +5,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _minHealth;
     [SerializeField] private float _maxHealth;
-    [SerializeField] private float _damage;
-    [SerializeField] private float _healing;
 
     private float _actualHealth;
 
@@ -19,7 +17,7 @@ public class Player : MonoBehaviour
         _actualHealth = _maxHealth;
     }
 
-    public void TakeDamage()
+    public void TakeDamage(float _damage)
     {
         _actualHealth -= _damage;
 
@@ -30,7 +28,7 @@ public class Player : MonoBehaviour
         HealthAdjusted?.Invoke(_actualHealth);
     }
 
-    public void RestoreHealth()
+    public void RestoreHealth(float _healing)
     {
         _actualHealth += _healing;
 

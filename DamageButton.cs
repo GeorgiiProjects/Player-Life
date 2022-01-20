@@ -3,9 +3,10 @@
 public class DamageButton : MonoBehaviour
 {
     [SerializeField] private Player _player;
+    [SerializeField] private float _damage;
 
     public void MakeDamage()
     {
-        _player.TakeDamage();
+        _player.TakeDamage(_damage);
     }
 }
