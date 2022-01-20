@@ -7,6 +7,6 @@ public class HealthButton : MonoBehaviour
 
     public void RestoreHealth()
     {
-        _player.RestoreHealth(_healing);
+        _player.Heal(_healing);
     }
 }

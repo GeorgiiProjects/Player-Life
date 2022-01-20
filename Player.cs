@@ -17,25 +17,17 @@ public class Player : MonoBehaviour
         _actualHealth = _maxHealth;
     }
 
-    public void TakeDamage(float _damage)
+    public void Damage(float damage)
     {
-        _actualHealth -= _damage;
+        _actualHealth = ((_actualHealth - damage) < _minHealth ? _minHealth : _actualHealth - damage);
 
-        if (_actualHealth < _minHealth)
-        {
-            _actualHealth = _minHealth;
-        }
         HealthAdjusted?.Invoke(_actualHealth);
     }
 
-    public void RestoreHealth(float _healing)
+    public void Heal(float healing)
     {
-        _actualHealth += _healing;
+        _actualHealth = ((_actualHealth + healing) > _maxHealth ? _maxHealth : _actualHealth + healing);
 
-        if (_actualHealth > _maxHealth)
-        {
-            _actualHealth = _maxHealth;
-        }
         HealthAdjusted?.Invoke(_actualHealth);
     }
 }

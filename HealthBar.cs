@@ -11,13 +11,22 @@ public class HealthBar : MonoBehaviour
     private Coroutine _coroutine;
     private Slider _slider;
 
-    private void Start()
+    private void OnEnable()
     {
-        SetMaxHealth();
         _player.HealthAdjusted += ModifyHealth;
     }
 
-    private void SetMaxHealth()
+    private void OnDisable()
+    {
+        _player.HealthAdjusted -= ModifyHealth;
+    }
+
+    private void Start()
+    {
+        Setup();      
+    }
+
+    private void Setup()
     {
         _slider = GetComponent<Slider>();
         _slider.maxValue = _player.MaxHealth;
@@ -26,15 +35,15 @@ public class HealthBar : MonoBehaviour
 
     private void ModifyHealth(float health)
     {
-        if (_coroutine!= null)
+        if (_coroutine != null)
         {
             StopCoroutine(_coroutine);
         }
-            
-        _coroutine = StartCoroutine(SendCurrentHealth(health));
+
+        _coroutine = StartCoroutine(SetCurrentHealth(health));
     }
 
-    private IEnumerator SendCurrentHealth(float currentHealth)
+    private IEnumerator SetCurrentHealth(float currentHealth)
     {
         while (_slider.value != currentHealth)
         {

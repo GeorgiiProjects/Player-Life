@@ -7,6 +7,6 @@ public class DamageButton : MonoBehaviour
 
     public void MakeDamage()
     {
-        _player.TakeDamage(_damage);
+        _player.Damage(_damage);
     }
 }
