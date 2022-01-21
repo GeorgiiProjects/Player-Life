@@ -19,14 +19,14 @@ public class Player : MonoBehaviour
 
     public void Damage(float damage)
     {
-        _actualHealth = ((_actualHealth - damage) < _minHealth ? _minHealth : _actualHealth - damage);
+        _actualHealth = Mathf.Max(_actualHealth - damage, _minHealth);
 
         HealthAdjusted?.Invoke(_actualHealth);
     }
 
     public void Heal(float healing)
     {
-        _actualHealth = ((_actualHealth + healing) > _maxHealth ? _maxHealth : _actualHealth + healing);
+        _actualHealth = Mathf.Min(_actualHealth + healing, _maxHealth);
 
         HealthAdjusted?.Invoke(_actualHealth);
     }
